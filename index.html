@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>个人博客系统（精简开源版）</title>
+<meta name="description" content="免费开源的个人博客系统精简版：文章列表、分类与标签筛选、文章详情与浏览量统计、评论提交与审核显示，后台文章增删改查与评论审核管理，真实增删改查功能，纯前端+localStorage实现，可作为学习或二次开发起点。">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">笔记<span class="accent">小站</span></div>
+    <a href="admin.html" class="nav-link">进入站长后台 →</a>
+  </header>
+
+  <main class="container">
+
+    <section id="view-list" class="page-view active">
+      <div class="page-head">
+        <h1>写点值得记录的东西</h1>
+        <p>一个人的博客：技术、生活、随笔、教程都写。这是一个真实可用的精简开源系统，数据保存在你浏览器本地。</p>
+      </div>
+
+      <div class="filter-row" id="categoryFilters">
+        <button class="filter-btn active" data-category="all">全部</button>
+      </div>
+      <div class="tag-filter-row">
+        <label for="tagFilter">按标签筛选：</label>
+        <select id="tagFilter">
+          <option value="all">全部标签</option>
+        </select>
+      </div>
+
+      <div id="postGrid" class="post-grid"></div>
+      <div id="emptyState" class="empty-state" style="display:none">没有符合条件的文章。</div>
+    </section>
+
+    <section id="view-detail" class="page-view">
+      <button class="btn btn-sm" id="btnBackToList">← 返回列表</button>
+      <article class="post-detail" id="postDetail"></article>
+
+      <div class="comment-section">
+        <h2>评论 <span id="commentCount"></span></h2>
+        <div id="commentList" class="comment-list"></div>
+
+        <div class="comment-form-wrap">
+          <h3>发表评论</h3>
+          <div id="commentMsg"></div>
+          <form id="commentForm" novalidate>
+            <div class="field">
+              <label>昵称</label>
+              <input id="commentNameInput" type="text" required placeholder="怎么称呼你">
+            </div>
+            <div class="field">
+              <label>评论内容</label>
+              <textarea id="commentContentInput" rows="3" required placeholder="说点什么……"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary btn-block">提交评论</button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <script src="data.js"></script>
+  <script src="script.js"></script>
+
+<footer style="margin:40px auto 16px;max-width:1100px;padding:16px 20px 0;border-top:1px solid var(--line,rgba(147,160,184,.18));text-align:center;color:var(--muted,#93A0B8);font-size:13px">精简开源演示 &middot; 完整版：<a href="https://inzyxuashop.com/boke-yuanma.html" target="_blank" rel="noopener" style="color:var(--cyan,#19B8D4);text-decoration:none">博客系统源码</a></footer>
+</body>
+</html>

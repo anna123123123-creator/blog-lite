@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>站长后台 · 个人博客系统（精简开源版）</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="admin-layout">
+    <aside class="sidebar">
+      <div class="brand">笔记<span class="accent">小站</span> 后台</div>
+      <div class="side-link active" data-view="dashboard">仪表盘</div>
+      <div class="side-link" data-view="posts">文章管理</div>
+      <div class="side-link" data-view="comments">评论管理</div>
+      <div class="side-link" id="btnResetData" style="margin-top:20px;color:var(--red)">重置示例数据</div>
+      <a href="index.html" class="side-link">← 返回前台</a>
+    </aside>
+
+    <main class="admin-main">
+      <section id="view-dashboard" class="admin-view active">
+        <div class="page-head"><h1>仪表盘</h1><p>文章与评论概览。</p></div>
+        <div class="stat-grid" id="statGrid"></div>
+        <table>
+          <thead><tr><th>最多浏览的文章</th><th>分类</th><th>浏览量</th><th>状态</th></tr></thead>
+          <tbody id="topPostsBody"></tbody>
+        </table>
+      </section>
+
+      <section id="view-posts" class="admin-view">
+        <div class="page-head"><h1>文章管理</h1><p>添加、编辑或删除文章。</p></div>
+        <div class="table-toolbar">
+          <span></span>
+          <button class="btn btn-primary btn-sm" id="btnAddPost">+ 新增文章</button>
+        </div>
+        <table>
+          <thead><tr><th>标题</th><th>分类</th><th>标签</th><th>浏览量</th><th>状态</th><th>操作</th></tr></thead>
+          <tbody id="postsBody"></tbody>
+        </table>
+      </section>
+
+      <section id="view-comments" class="admin-view">
+        <div class="page-head"><h1>评论管理</h1><p>审核或删除读者评论。</p></div>
+        <div class="table-toolbar">
+          <div class="filter-row" id="commentFilters">
+            <button class="filter-btn active" data-status="all">全部</button>
+            <button class="filter-btn" data-status="pending">待审核</button>
+            <button class="filter-btn" data-status="approved">已通过</button>
+          </div>
+        </div>
+        <table>
+          <thead><tr><th>评论内容</th><th>作者</th><th>所属文章</th><th>时间</th><th>状态</th><th>操作</th></tr></thead>
+          <tbody id="commentsBody"></tbody>
+        </table>
+      </section>
+    </main>
+  </div>
+
+  <div class="modal-backdrop" id="postModalBackdrop">
+    <div class="modal">
+      <button class="modal-close" id="btnClosePostModal">&times;</button>
+      <h2 id="postModalTitle">新增文章</h2>
+      <div id="postModalMsg"></div>
+      <form id="postForm" novalidate>
+        <input type="hidden" id="postIdInput">
+        <div class="field"><label>标题</label><input id="postTitleInput" type="text" required></div>
+        <div class="field"><label>Slug（URL 别名）</label><input id="postSlugInput" type="text" placeholder="留空自动生成"></div>
+        <div class="field"><label>摘要</label><textarea id="postExcerptInput" rows="2" required></textarea></div>
+        <div class="field"><label>正文（空行分段）</label><textarea id="postContentInput" rows="6" required></textarea></div>
+        <div class="field-row">
+          <div class="field"><label>分类</label><input id="postCategoryInput" type="text" required placeholder="例如：技术"></div>
+          <div class="field"><label>标签（逗号分隔）</label><input id="postTagsInput" type="text" placeholder="例如：JavaScript,教程"></div>
+        </div>
+        <div class="field-row">
+          <div class="field"><label>封面 Emoji</label><input id="postEmojiInput" type="text" placeholder="例如：📝"></div>
+          <div class="field checkbox-field">
+            <label><input id="postPublishedInput" type="checkbox"> 发布上线（公开可见）</label>
+          </div>
+        </div>
+        <button type="submit" class="btn btn-primary btn-block">保存</button>
+      </form>
+    </div>
+  </div>
+
+  <script src="data.js"></script>
+  <script src="admin.js"></script>
+
+<footer style="margin:40px auto 16px;max-width:1100px;padding:16px 20px 0;border-top:1px solid var(--line,rgba(147,160,184,.18));text-align:center;color:var(--muted,#93A0B8);font-size:13px">精简开源演示 &middot; 完整版：<a href="https://inzyxuashop.com/boke-yuanma.html" target="_blank" rel="noopener" style="color:var(--cyan,#19B8D4);text-decoration:none">博客系统源码</a></footer>
+</body>
+</html>
